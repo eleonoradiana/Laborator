@@ -1,0 +1,142 @@
+<!DOCTYPE HTML> 
+<html>
+<title>laborator 7 completat putin </title>
+<head></head>
+<body>
+	
+<!--ex2-->
+	<script >
+		
+		for (var i = 0; i < 5; i++) (function(i) {
+		setTimeout(function() {
+			console.log(i); }
+			, i * 1000 );
+	});
+
+	</script>
+<!--ex3-->
+<script>
+	
+	try {
+		setTimeout(function(){}, 1000)
+		throw new Error('example');
+}
+ catch (err) {
+	console.log(err);
+}
+</script>
+
+<!--ex4 ES6-->
+
+<script>
+	function Animal(color,type) {
+    this.color = color;
+    this.type = type;
+}
+
+
+
+Animal.prototype.getColor = function() {
+    return this.color;
+};
+
+function Dog(color,type,dogType) 
+{
+    Animal.call(this,color, type);
+    this.dogType = dogType;
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.getDogType = function() 
+{
+    return this.dogType;
+};
+
+
+function DogType(typeName,furColor) 
+{
+    this.typeName = typeName;
+    this.furColor = furColor;
+}
+
+DogType.prototype.getFurColor = function() {
+    return this.furColor;
+};
+
+
+function Fish(color,type,fishType) 
+{
+    Animal.call(this,color, type);
+    this.fishType = fishType;
+}
+
+Fish.prototype = Object.create(Animal.prototype);
+Fish.prototype.constructor = Fish;
+
+Fish.prototype.getFishType = function() 
+{
+    return this.fishType;
+};
+
+
+
+var peste1 = new Fish('test', "test1", "test2");
+
+console.log(peste1.getFishType());
+
+console.log(peste1.getColor());
+
+
+
+
+var catel1 = new Dog('test4', "test5", new DogType("caine1","albastru"));
+
+console.log(catel1.getDogType().getFurColor());
+
+console.log(catel1.getColor());
+
+</script>
+
+<!--ex6-->
+<style >
+#Container
+{
+	width: 400px;
+	height: 400px;
+	position: relative;
+	background:grey;
+}
+#Animation
+{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	background-color:yellow; 
+}
+</style>
+
+<BUTTON id="moveRightBtn" onclick="moveRight()">>></BUTTON>
+<div id ="Container">
+<div id="Animation">
+</div>
+</div>
+<script>
+function moveRight()
+{
+var elem =document.getElementById("Animation");
+var pos =0;
+var id= setInterval(frame, 15);
+  function frame() {
+    if (pos == 250) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.left = pos + 'px'; 
+  }
+}
+}
+</script>
+</body>
+</html>
